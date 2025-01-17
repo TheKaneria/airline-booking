@@ -187,6 +187,13 @@
   border: none;
 }
 
+.disabledatepicker .ant-picker {
+  background-color: #ececec;
+  height: 45px;
+  width: 100%;
+  border: none;
+}
+
 .custom-date-picker .ant-picker:hover,
 .custom-date-picker .ant-picker-focused {
   border-color: #dbb46b; /* Border color when focused or hovered */
@@ -250,6 +257,7 @@
   border-bottom: 1px solid #ccc;
   outline: none;
   font-size: 16px;
+  margin: 0px;
 }
 
 .dropdown-item {
@@ -270,6 +278,7 @@
 .airport-details {
   font-size: 14px;
   color: #666;
+  text-wrap: auto;
 }
 
 .airport-code {
@@ -520,6 +529,14 @@ input {
 
 .fw-bold {
   font-weight: 600; /* Adjusts boldness */
+}
+
+.no_flight_search_line {
+  font-size: 18px;
+  color: var(--color-theme);
+  font-weight: 800;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {

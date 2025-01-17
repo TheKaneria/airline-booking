@@ -1,3 +1,239 @@
+// import React, { useState } from "react";
+// import "./HeroTicketBooking.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { TbArrowsRightLeft } from "react-icons/tb";
+// import Select from "react-select";
+// import makeAnimated from "react-select/animated";
+// import { DatePicker, Space } from "antd";
+// // import "antd/dist/antd.css"; // Ensure you import Ant Design's styles
+
+// const option = [
+//   { value: "ocean", label: "Ocean", color: "#00B8D9" },
+//   { value: "blue", label: "Blue", color: "#0052CC" },
+//   { value: "purple", label: "Purple", color: "#5243AA" },
+//   { value: "red", label: "Red", color: "#FF5630" },
+//   { value: "orange", label: "Orange", color: "#FF8B00" },
+//   { value: "yellow", label: "Yellow", color: "#FFC400" },
+//   { value: "green", label: "Green", color: "#36B37E" },
+//   { value: "forest", label: "Forest", color: "#00875A" },
+//   { value: "slate", label: "Slate", color: "#253858" },
+//   { value: "silver", label: "Silver", color: "#666666" },
+// ];
+// const option2 = [
+//   { value: "ocean", label: "Ocean", color: "#00B8D9" },
+//   { value: "blue", label: "Blue", color: "#0052CC" },
+//   { value: "purple", label: "Purple", color: "#5243AA" },
+//   { value: "red", label: "Red", color: "#FF5630" },
+//   { value: "orange", label: "Orange", color: "#FF8B00" },
+//   { value: "yellow", label: "Yellow", color: "#FFC400" },
+//   { value: "green", label: "Green", color: "#36B37E" },
+//   { value: "forest", label: "Forest", color: "#00875A" },
+//   { value: "slate", label: "Slate", color: "#253858" },
+//   { value: "silver", label: "Silver", color: "#666666" },
+// ];
+
+// const HeroTicketBooking = () => {
+//   const [selected, setSelected] = useState("oneWay");
+//   const [selectedClass, setSelectedClass] = useState("Economy");
+//   const animatedComponents = makeAnimated();
+//   const [traveller, setTraveller] = useState("");
+//   const [date1, setDate1] = useState("");
+//   const [date2, setDate2] = useState("");
+
+//   const onChange = (date, dateString) => {
+//     setDate1(dateString);
+//     console.log(dateString);
+//   };
+
+//   const onChange2 = (date, dateString) => {
+//     setDate2(dateString);
+//     console.log(dateString);
+//   };
+
+//   const disablePastDates = (current) => {
+//     return current && current < new Date().setHours(0, 0, 0, 0); // Disable dates before today
+//   };
+
+//   return (
+//     <div className="container contt">
+//       <div className="row align-items-center radiobtnsec">
+//         <div className="d-flex align-items-center gap-3">
+//           <input
+//             type="radio"
+//             className="rdbtn"
+//             name="trip"
+//             id="oneWay"
+//             checked={selected === "oneWay"}
+//             onChange={() => setSelected("oneWay")}
+//           />
+//           <label htmlFor="oneWay">
+//             <h4>ONE WAY</h4>
+//           </label>
+
+//           <input
+//             type="radio"
+//             className="rdbtn"
+//             name="trip"
+//             id="roundTrip"
+//             checked={selected === "roundTrip"}
+//             onChange={() => setSelected("roundTrip")}
+//           />
+//           <label htmlFor="roundTrip">
+//             <h4>ROUND TRIP</h4>
+//           </label>
+//         </div>
+
+//         <div className="classcat  d-md-flex justify-content-center p-md-3 gap-md-5">
+//           <div
+//             className={`classnm ${
+//               selectedClass === "Economy" ? "selected" : ""
+//             }`}
+//             onClick={() => setSelectedClass("Economy")}
+//           >
+//             Economy
+//           </div>
+//           <div
+//             className={`classnm ${
+//               selectedClass === "Business Class" ? "selected" : ""
+//             }`}
+//             onClick={() => setSelectedClass("Business Class")}
+//           >
+//             Business Class
+//           </div>
+//           <div
+//             className={`classnm ${
+//               selectedClass === "First Class" ? "selected" : ""
+//             }`}
+//             onClick={() => setSelectedClass("First Class")}
+//           >
+//             First Class
+//           </div>
+//         </div>
+
+//         <div className="dateselectdiv">
+//           <div className="row align-items-center gap-3 gap-lg-0  p-2 p-md-3">
+//             <div className="col-12 col-lg-6">
+//               <div className="row align-items-center pb-3 p-md-0">
+//                 <div className="col-md-5 d-flex flex-column gap-2 ">
+//                   <div className="fromtxt">From</div>
+//                   <div>
+//                     <Select
+//                       closeMenuOnSelect={false}
+//                       styles={{
+//                         container: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "#fffbdb",
+//                           borderRadius: "10px",
+//                         }),
+//                         control: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "transparent",
+//                           //   border: "1px solid #fff",
+//                           boxShadow: "none",
+//                           borderRadius: "10px",
+//                           overflow: "hidden",
+//                         }),
+//                         menu: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "#fff", // Make dropdown menu transparent
+//                         }),
+//                         option: (provided, state) => ({
+//                           ...provided,
+//                           backgroundColor: state.isFocused
+//                             ? "#dbb46b"
+//                             : "transparent", // Highlight focused option
+//                           color: state.isFocused ? "#fff" : "#000", // Adjust text color
+//                         }),
+//                       }}
+//                       components={animatedComponents}
+//                       className="selectmenu"
+//                       options={option}
+//                     />
+//                   </div>
+//                 </div>
+//                 <div className="col-md-2 d-flex justify-content-center  p-3 p-md-0 align-self-center">
+//                   <TbArrowsRightLeft size={30} color="#fff" />
+//                 </div>
+//                 <div className="col-md-5 d-flex flex-column gap-2">
+//                   <div className="fromtxt">To</div>
+//                   <div>
+//                     <Select
+//                       closeMenuOnSelect={false}
+//                       styles={{
+//                         container: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "#fffbdb",
+//                           borderRadius: "10px",
+//                         }),
+//                         control: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "transparent",
+//                           //   border: "1px solid #fff",
+//                           boxShadow: "none",
+//                           borderRadius: "10px",
+//                           overflow: "hidden",
+//                         }),
+//                         menu: (provided) => ({
+//                           ...provided,
+//                           backgroundColor: "#fff", // Make dropdown menu transparent
+//                         }),
+//                         option: (provided, state) => ({
+//                           ...provided,
+//                           backgroundColor: state.isFocused
+//                             ? "#dbb46b"
+//                             : "transparent", // Highlight focused option
+//                           color: state.isFocused ? "#fff" : "#000", // Adjust text color
+//                         }),
+//                       }}
+//                       components={animatedComponents}
+//                       className="selectmenu"
+//                       options={option2}
+//                     />
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="col-12 col-lg-6">
+//               <div className="row align-items-center gap-3 gap-md-0">
+//                 <div className="col-12 col-md-4 d-flex flex-column gap-2">
+//                   <div className="departtxt">Departing</div>
+//                   <div className="custom-date-picker">
+//                     <DatePicker
+//                       onChange={onChange}
+//                       format="DD-MM-YYYY"
+//                       disabledDate={disablePastDates}
+//                     />
+//                   </div>
+//                 </div>
+//                 <div className="col-md-4 d-flex flex-column gap-2">
+//                   <div className="departtxt">Returning</div>
+//                   <div className="custom-date-picker">
+//                     <DatePicker
+//                       onChange={() => onChange2()}
+//                       format="DD-MM-YYYY"
+//                       disabledDate={disablePastDates}
+//                     />
+//                   </div>
+//                 </div>
+//                 <div className="col-md-4 d-flex flex-column gap-2 mb-3 mb-md-0">
+//                   <div className="departtxt">Travellers</div>
+//                   <input
+//                     onChange={(e) => setTraveller(e.target.value)}
+//                     value={traveller}
+//                     className="travellarinpt"
+//                   />
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HeroTicketBooking;
+
 import React, { useEffect, useRef, useState } from "react";
 import "./HeroTicketBooking.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,10 +246,11 @@ import Notification from "../../Utils/Notification"; // Adjust the path based on
 // import "antd/dist/antd.css"; // Ensure you import Ant Design's styles
 import moment from "moment";
 import { IoAirplaneSharp } from "react-icons/io5";
-import { FaRupeeSign } from "react-icons/fa";
 import images from "../../Constants/images";
-import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { BsFillLuggageFill } from "react-icons/bs";
+import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 
 const option = [
   { value: "ocean", label: "Ocean", color: "#00B8D9" },
@@ -44,18 +281,10 @@ const HeroTicketBooking = () => {
   const [selected, setSelected] = useState(0);
   const [selectedClass, setSelectedClass] = useState("Economy");
   const [getDepatureCityList, setDepatureCityList] = useState([]);
-  const [getDepatureCityListFilterData, setDepatureCityListFilterData] =
-    useState([]);
   const [getArrivalCityList, setArrivalCityList] = useState([]);
-  const [getArrivalCityListFilterData, setArrivalCityListFilterData] = useState(
-    []
-  );
   const [getSectorList, setSectorList] = useState([]);
   const [getOnwardDateList, setOnwardDateList] = useState([]);
-  const [getSearchFlightList, setSearchFlightList] = useState([]);
-  const [getSearchFlightListLoading, setSearchFlightListLoading] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
-  const [selectedValueCity, setSelectedValueCity] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedValue2, setSelectedValue2] = useState("");
@@ -63,8 +292,7 @@ const HeroTicketBooking = () => {
   const [searchTerm2, setSearchTerm2] = useState("");
   const [getDepCityCode, setDepCityCode] = useState("");
   const [getArrCityCode, setArrCityCode] = useState("");
-  const [getSearchFlightListMsg, setSearchFlightListMsg] = useState("");
-  const [getSeachCondition, setSearchCondition] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
 
   const [travellers, setTravellers] = useState({
     adult: 1,
@@ -88,7 +316,11 @@ const HeroTicketBooking = () => {
     setIsDropdownOpen2(!isDropdownOpen2);
   };
 
-  // console.log("getSearchFlightList",getSearchFlightList);
+  const toggleView = () => {
+    setIsViewOpen(!isViewOpen);
+  };
+
+  // console.log("getOnwardDateList",getOnwardDateList);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -144,72 +376,31 @@ const HeroTicketBooking = () => {
     setIsDropdownOpenTravellers((prev) => !prev);
   };
 
-  // const handleSearch = (e) => {
-  //   const term = e.target.value.toLowerCase();
-  //   setSearchTerm(term);
-
-  //   const filtered = getDepatureCityList?.filter(
-  //     (item) =>
-  //       item.city_name.toLowerCase().includes(term) ||
-  //       item.airport_name.toLowerCase().includes(term) ||
-  //       item.airport_code.toLowerCase().includes(term)
-  //   );
-
-  //   setDepatureCityList(filtered);
-  // };
-
-  // console.log("getDepatureCityList", getDepatureCityList);
-
   const handleSearch = (e) => {
-    const textData = e.target.value.toUpperCase(); // Get input value
-    setSearchTerm(e.target.value); // Update search term state
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
 
-    const newData = getDepatureCityList.filter((item) => {
-      const cityName = item.city_name ? item.city_name.toUpperCase() : "";
-      const airportName = item.airport_name
-        ? item.airport_name.toUpperCase()
-        : "";
+    const filtered = getDepatureCityList?.filter(
+      (item) =>
+        item.city_name.toLowerCase().includes(term) ||
+        item.airport_name.toLowerCase().includes(term) ||
+        item.airport_code.toLowerCase().includes(term)
+    );
 
-      // Check if textData matches cityName or airportName
-      return (
-        cityName.indexOf(textData) > -1 || airportName.indexOf(textData) > -1
-      );
-    });
-
-    setDepatureCityListFilterData(newData); // Update the filtered list
+    setDepatureCityList(filtered);
   };
-
-  // const handleSearch2 = (e) => {
-  //   const term = e.target.value.toLowerCase();
-  //   setSearchTerm2(term);
-
-  //   const filtered = getArrivalCityList?.filter(
-  //     (item) =>
-  //       item.city_name.toLowerCase().includes(term) ||
-  //       item.airport_name.toLowerCase().includes(term) ||
-  //       item.airport_code.toLowerCase().includes(term)
-  //   );
-
-  //   setArrivalCityList(filtered);
-  // };
-
   const handleSearch2 = (e) => {
-    const textData = e.target.value.toUpperCase(); // Get input value
-    setSearchTerm2(e.target.value); // Update search term state
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
 
-    const newData = getArrivalCityList.filter((item) => {
-      const cityName = item.city_name ? item.city_name.toUpperCase() : "";
-      const airportName = item.airport_name
-        ? item.airport_name.toUpperCase()
-        : "";
+    const filtered = getArrivalCityList?.filter(
+      (item) =>
+        item.city_name.toLowerCase().includes(term) ||
+        item.airport_name.toLowerCase().includes(term) ||
+        item.airport_code.toLowerCase().includes(term)
+    );
 
-      // Check if textData matches cityName or airportName
-      return (
-        cityName.indexOf(textData) > -1 || airportName.indexOf(textData) > -1
-      );
-    });
-
-    setArrivalCityListFilterData(newData); // Update the filtered list
+    setArrivalCityList(filtered);
   };
 
   const handleSelect = (item) => {
@@ -496,84 +687,9 @@ const HeroTicketBooking = () => {
     }
   };
   const searchFlight = async () => {
-    setSearchCondition(false);
-
-    const formattedDate = moment(date1, "DD-MM-YYYY").format("YYYY-MM-DD");
-
+    const formattedDate1 = moment(date1).format("YYYY-MM-DD");
     const formattedDate2 = date2 ? moment(date2).format("YYYY-MM-DD") : "";
-    const token = "4-2-3721-KRAZY-389-xnewkncBUI8";
-    const publicIP = await getPublicIP();
-
-    if (!publicIP) {
-      console.error("Unable to fetch public IP. Request cannot be completed.");
-      return;
-    } else if (selectedValue === "") {
-      alert("Please Select From City");
-    } else if (selectedValue2 === "") {
-      alert("Please Select To City");
-    } else if (date1 === "") {
-      alert("Please Select Departure Date");
-    } else if (selected == 1 && date2 === "") {
-      alert("Please Select Departure Date");
-    } else {
-      setSearchFlightListLoading(true);
-      const url = "https://devapi.fareboutique.com/v1/fbapi/search";
-      const payload = {
-        trip_type: selected,
-        end_user_ip: "183.83.43.117",
-        token: token,
-        dep_city_code: getDepCityCode,
-        arr_city_code: getArrCityCode,
-        onward_date: formattedDate,
-        return_date: date2,
-        adult: travellers?.adult,
-        children: travellers?.child,
-        infant: travellers?.infant,
-      };
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
-
-        // Parse the JSON response
-        const data = await response.json();
-
-        if (data.errorCode == 0) {
-          console.log("Response Search Data from API:", data);
-          setSearchFlightList(data.data);
-          setSearchFlightListLoading(false);
-          // fareQuote();
-          Notification("success", "Success!", data.message);
-        } else if (data.errorCode == 1) {
-          setSearchCondition(true);
-          setSearchFlightList([]);
-          setSearchFlightListMsg(data.errorMessage);
-          setSearchFlightListLoading(false);
-        } else {
-          Notification(
-            "error",
-            "Error!",
-            data.message || "Something went wrong"
-          );
-        }
-      } catch (error) {
-        setSearchFlightListLoading(false);
-        console.error("Error while fetching departure city list:", error);
-        Notification("error", "Error!", "Failed to fetch data");
-      }
-    }
-  };
-
-  const fareQuote = async () => {
-    const formattedDate = moment(date1, "DD-MM-YYYY").format("YYYY-MM-DD");
-
-    const formattedDate2 = date2 ? moment(date2).format("YYYY-MM-DD") : "";
-    const token = "4-2-3721-KRAZY-389-xnewkncBUI8";
+    const token = "U4YuxXWYMqeozz3peZTDJ1zgtuir1OMqQN7pHFJysAAZW";
     const publicIP = await getPublicIP();
 
     if (!publicIP) {
@@ -581,15 +697,18 @@ const HeroTicketBooking = () => {
       return;
     }
 
-    const url = "https://devapi.fareboutique.com/v1/fbapi/fare_quote";
+    const url = "https://devapi.fareboutique.com/v1/fbapi/search";
     const payload = {
-      id: 415,
-      end_user_ip: "183.83.43.117",
+      trip_type: selected,
+      end_user_ip: publicIP,
       token: token,
-      onward_date: formattedDate,
-      adult_children: travellers?.adult + travellers.child,
+      dep_city_code: getDepCityCode,
+      arr_city_code: getArrCityCode,
+      departure_date: moment(date1).format("YYYY-MM-DD"),
+      return_date: date2,
+      adult: travellers?.adult,
+      children: travellers?.child,
       infant: travellers?.infant,
-      static: "0--21--354",
     };
 
     try {
@@ -606,7 +725,7 @@ const HeroTicketBooking = () => {
 
       if (data.replyCode === "success") {
         console.log("Response Return Dates from API:", data);
-        // setSearchFlightList(data.data);
+        setOnwardDateList(data.data);
         Notification("success", "Success!", data.message);
       } else {
         Notification("error", "Error!", data.message || "Something went wrong");
@@ -634,7 +753,7 @@ const HeroTicketBooking = () => {
             }}
           />
           <label htmlFor="oneWay">
-            <h4>ONE WAY</h4>
+            <h4 className="w-auto">ONE WAY</h4>
           </label>
 
           <input
@@ -650,7 +769,7 @@ const HeroTicketBooking = () => {
             }}
           />
           <label htmlFor="roundTrip">
-            <h4>ROUND TRIP</h4>
+            <h4 className="w-auto">ROUND TRIP</h4>
           </label>
         </div>
 
@@ -737,64 +856,30 @@ const HeroTicketBooking = () => {
                           type="text"
                           placeholder="Search airport..."
                           value={searchTerm}
-                          onChange={(e) => handleSearch(e)}
+                          onChange={handleSearch}
                           className="dropdown-search-input"
                         />
 
-                        {searchTerm ? (
-                          <>
-                            {getDepatureCityListFilterData?.length > 0 ? (
-                              getDepatureCityListFilterData?.map(
-                                (item, index) => (
-                                  <div
-                                    key={index}
-                                    className="dropdown-item"
-                                    onClick={() => handleSelect(item)}
-                                  >
-                                    <div className="city-name">
-                                      {item.city_name}
-                                    </div>
-                                    <div className="airport-details">
-                                      {item.airport_name}{" "}
-                                      <span className="airport-code">
-                                        ({item.airport_code})
-                                      </span>
-                                    </div>
-                                  </div>
-                                )
-                              )
-                            ) : (
-                              <div className="dropdown-no-results">
-                                No results found
+                        {getDepatureCityList?.length > 0 ? (
+                          getDepatureCityList?.map((item, index) => (
+                            <div
+                              key={index}
+                              className="dropdown-item"
+                              onClick={() => handleSelect(item)}
+                            >
+                              <div className="city-name">{item.city_name}</div>
+                              <div className="airport-details">
+                                {item.airport_name}{" "}
+                                <span className="airport-code">
+                                  ({item.airport_code})
+                                </span>
                               </div>
-                            )}
-                          </>
+                            </div>
+                          ))
                         ) : (
-                          <>
-                            {getDepatureCityList?.length > 0 ? (
-                              getDepatureCityList?.map((item, index) => (
-                                <div
-                                  key={index}
-                                  className="dropdown-item"
-                                  onClick={() => handleSelect(item)}
-                                >
-                                  <div className="city-name">
-                                    {item.city_name}
-                                  </div>
-                                  <div className="airport-details">
-                                    {item.airport_name}{" "}
-                                    <span className="airport-code">
-                                      ({item.airport_code})
-                                    </span>
-                                  </div>
-                                </div>
-                              ))
-                            ) : (
-                              <div className="dropdown-no-results">
-                                No results found
-                              </div>
-                            )}
-                          </>
+                          <div className="dropdown-no-results">
+                            No results found
+                          </div>
                         )}
                       </div>
                     )}
@@ -856,63 +941,30 @@ const HeroTicketBooking = () => {
                           type="text"
                           placeholder="Search airport..."
                           value={searchTerm2}
-                          onChange={(e) => handleSearch2(e)}
+                          onChange={handleSearch2} // Pass the event directly
                           className="dropdown-search-input"
                         />
-                        {searchTerm2 ? (
-                          <>
-                            {getArrivalCityListFilterData?.length > 0 ? (
-                              getArrivalCityListFilterData?.map(
-                                (item, index) => (
-                                  <div
-                                    key={index}
-                                    className="dropdown-item"
-                                    onClick={() => handleSelect2(item)}
-                                  >
-                                    <div className="city-name">
-                                      {item.city_name}
-                                    </div>
-                                    <div className="airport-details">
-                                      {item.airport_name}{" "}
-                                      <span className="airport-code">
-                                        ({item.airport_code})
-                                      </span>
-                                    </div>
-                                  </div>
-                                )
-                              )
-                            ) : (
-                              <div className="dropdown-no-results">
-                                No results found
+
+                        {getArrivalCityList?.length > 0 ? (
+                          getArrivalCityList?.map((item, index) => (
+                            <div
+                              key={index}
+                              className="dropdown-item"
+                              onClick={() => handleSelect2(item)}
+                            >
+                              <div className="city-name">{item.city_name}</div>
+                              <div className="airport-details">
+                                {item.airport_name}{" "}
+                                <span className="airport-code">
+                                  ({item.airport_code})
+                                </span>
                               </div>
-                            )}
-                          </>
+                            </div>
+                          ))
                         ) : (
-                          <>
-                            {getArrivalCityList?.length > 0 ? (
-                              getArrivalCityList?.map((item, index) => (
-                                <div
-                                  key={index}
-                                  className="dropdown-item"
-                                  onClick={() => handleSelect2(item)}
-                                >
-                                  <div className="city-name">
-                                    {item.city_name}
-                                  </div>
-                                  <div className="airport-details">
-                                    {item.airport_name}{" "}
-                                    <span className="airport-code">
-                                      ({item.airport_code})
-                                    </span>
-                                  </div>
-                                </div>
-                              ))
-                            ) : (
-                              <div className="dropdown-no-results">
-                                No results found
-                              </div>
-                            )}
-                          </>
+                          <div className="dropdown-no-results">
+                            No results found
+                          </div>
                         )}
                       </div>
                     )}
@@ -923,7 +975,7 @@ const HeroTicketBooking = () => {
             <div className="col-12 col-lg-6">
               <div className="row align-items-center gap-3 gap-md-0">
                 <div className="col-12 col-md-4 d-flex flex-column gap-2">
-                  <div className="departtxt">Departure</div>
+                  <div className="departtxt">Departing</div>
                   <div className="custom-date-picker">
                     {/* <Space direction="vertical"> */}
                     <DatePicker
@@ -936,17 +988,10 @@ const HeroTicketBooking = () => {
                   </div>
                 </div>
                 <div className="col-md-4 d-flex flex-column gap-2">
-                  <div className="departtxt">Return</div>
-                  <div
-                    className={`${
-                      selected === 0
-                        ? "disabledatepicker"
-                        : "custom-date-picker"
-                    }`}
-                  >
+                  <div className="departtxt">Returning</div>
+                  <div className="custom-date-picker">
                     <DatePicker
                       disabled={selected == 0 ? true : false}
-                      style={{ opacity: selected == 0 ? 0.6 : 1 }}
                       onChange={() => onChange2()}
                       format="DD-MM-YYYY"
                       disabledDate={disablePastDates}
@@ -1053,165 +1098,179 @@ const HeroTicketBooking = () => {
             </button>
           </div>
         </div>
-        {getSearchFlightListLoading === true ? (
-          <>
-            <div
-              style={{
-                width: "100%",
-                // height: "80vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div className="loader">
-                <div className="spinner"></div>
-                <p className="loading-text">Loading...</p>
+
+        <div className="flightcounter">
+          <h5>
+            We have <span>1 Flight</span> from <span>Ahmedabad</span> to {""}
+            <span>Srinagar</span> 1 Traveller
+          </h5>
+        </div>
+        <div className="flightsavailable shadow">
+          <div className="align-items-center justify-content-around d-flex flex-column gap-5 gap-lg-0 flex-lg-row  p-3">
+            <div className="airlinename col-12 col-lg-3">
+              <div>
+                <IoAirplaneSharp size={40} color="white" />
+              </div>
+              <div className="planecomp">Air India</div>
+              <div className="flightnum">6E715</div>
+            </div>
+            <div className="flight-details col-12 col-lg-6 justify-content-center">
+              <div className="flight-departure">
+                <h5 className="flighttime">12:00</h5>
+                <h5 className="airportname">DUB</h5>
+              </div>
+              <div className="d-flex align-items-center gap-3">
+                <span className="text-white">To</span>
+                <div className="from-to text-center">
+                  <h6 className="text-white">0h 50m</h6>
+                  <img src={images.vimaan} alt="" className="imagerouteplane" />
+                  <h6 className="text-white">1 stop</h6>
+                </div>
+                <span className="text-white">From</span>
+              </div>
+              <div className="flight-departure">
+                <h5 className="flighttime">12:00</h5>
+                <h5 className="airportname">DUB</h5>
               </div>
             </div>
-          </>
-        ) : (
-          <>
-            {getSearchFlightList.length > 0 ? (
-              <>
-                <div className="flightcounter">
-                  <h5>
-                    We have <span>{getSearchFlightList.length} Flight</span>{" "}
-                    from <span>{selectedValue}</span> to {""}
-                    <span>{selectedValue2}</span> {totalTravellers} Traveller
-                  </h5>
+
+            {/* <div className="nanolito"></div> */}
+            <div className="pricediv col-lg-3">
+              <div className="d-flex align-items-center">
+                <FaRupeeSign size={20} color="#fff" />
+                <h4 className="text-white fw-bold dijit">8840</h4>
+              </div>
+              <div className="text-white">Total Fare for 1</div>
+              <Link to={"/TicketBookingDetails"} className="bookBtn">
+                Book
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="flightcounter">
+          <div className="row align-items-center justify-content-center">
+            <div className="row p-0  align-items-center justify-content-center col-revv">
+              <div
+                className="col-md-4 d-flex align-items-start justify-content-lg-end gap-2 weightdiv"
+                onClick={toggleView}
+              >
+                <div>
+                  <BsFillLuggageFill size={20} color="" />
                 </div>
-              </>
-            ) : (
-              <></>
-            )}
+                <div>
+                  <p className="kilogram">15 KG</p>
+                </div>
+              </div>
+              <div className="col-md-4 d-flex align-items-start gap-2 justify-content-lg-center">
+                <div className="fw-bold fs-5">
+                  {" "}
+                  <p>Refund : </p>
+                </div>
+                <div>
+                  {" "}
+                  <p className="fs-5">Non-Refundable</p>{" "}
+                </div>
+              </div>
+              <div className="col-md-4 d-flex align-items-start gap-2 justify-content-lg-start">
+                <div>
+                  <MdOutlineAirlineSeatReclineExtra size={20} />
+                </div>
+                <div>
+                  <p className="fw-bold fs-5">Available Seats</p>
+                </div>
+                <div>
+                  <p className="fw-bold fs-5">08</p>
+                </div>
+              </div>
+            </div>
 
-            {getSeachCondition === true ? (
-              <>
-                <p className="no_flight_search_line">No Flights Available.</p>
-              </>
-            ) : (
-              <>
-                {getSearchFlightList.map((item, index) => {
-                  return (
-                    <>
-                      <div className="flightsavailable shadow">
-                        <div className="align-items-center justify-content-around d-flex flex-row  p-3">
-                          <div className="airlinename col-lg-3">
-                            <div>
-                              {item.airline_name === "IndiGo Airlines" ? (
-                                <>
-                                  <img
-                                    src={images.IndiGoAirlines_logo}
-                                    className="airline_logo"
-                                  />
-                                </>
-                              ) : (
-                                <>
-                                  <IoAirplaneSharp size={40} color="white" />
-                                </>
-                              )}
-                            </div>
-                            <div className="planecomp">
-                              {item?.airline_name}
-                            </div>
-                            <div className="flightnum">
-                              {item?.flight_number}
-                            </div>
-                          </div>
-                          <div className="flight-details col-lg-6 justify-content-center">
-                            <div className="flight-departure">
-                              <h5 className="flighttime">{item?.dep_time}</h5>
-                              <h5 className="airportname">
-                                {item?.dep_city_name}
-                              </h5>
-                            </div>
-                            <div className="d-flex align-items-center gap-3">
-                              <span className="text-white">To</span>
-                              <div className="from-to text-center">
-                                <h6 className="text-white">
-                                  {item?.duration &&
-                                    `${item.duration.split(":")[0]}h ${
-                                      item.duration.split(":")[1]
-                                    }min`}
-                                </h6>
-                                <img
-                                  src={images.vimaan}
-                                  alt=""
-                                  className="imagerouteplane"
-                                />
-                                <h6 className="text-white">
-                                  {item?.no_of_stop} Stop
-                                </h6>
-                              </div>
-                              <span className="text-white">From</span>
-                            </div>
-                            <div className="flight-departure">
-                              <h5 className="flighttime">{item?.arr_time}</h5>
-                              <h5 className="airportname">
-                                {item?.arr_city_name}
-                              </h5>
-                            </div>
-                          </div>
-
-                          {/* <div className="nanolito"></div> */}
-                          <div className="pricediv col-lg-3">
-                            <div className="d-flex align-items-center">
-                              <FaRupeeSign size={20} color="#fff" />
-                              <h4 className="text-white fw-bold dijit">
-                                {item?.total_payable_price}
-                              </h4>
-                            </div>
-                            <div className="text-white">Total Fare for 1</div>
-                            <div className="bookBtn">Book</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flightcounter">
-                        <div className="row align-items-center justify-content-center">
-                          <div className="col-md-4 d-flex align-items-start justify-content-lg-end gap-2">
-                            <div>
-                              <BsFillLuggageFill size={20} color="" />
-                            </div>
-                            <div>
-                              <p className="kilogram">
-                                {item?.check_in_baggage_adult} KG
-                              </p>
-                            </div>
-                          </div>
-                          <div className="col-md-4 d-flex align-items-start gap-2 justify-content-lg-center">
-                            <div className="fw-bold fs-5">
-                              {" "}
-                              <p>Refund : </p>
-                            </div>
-                            <div>
-                              {" "}
-                              <p className="fs-5">Non-Refundable</p>{" "}
-                            </div>
-                          </div>
-                          <div className="col-md-4 d-flex align-items-start gap-2 justify-content-lg-start">
-                            <div>
-                              <MdOutlineAirlineSeatReclineExtra size={20} />
-                            </div>
-                            <div>
-                              <p className="fw-bold fs-5">Available Seats</p>
-                            </div>
-                            <div>
-                              <p className="fw-bold fs-5">
-                                {" "}
-                                {item?.available_seats}{" "}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
-              </>
-            )}
-          </>
-        )}
+            <div className={`transition-view ${isViewOpen ? "show" : "hide"}`}>
+              <div className="row align-items-center">
+                <div className="col-12 col-lg-6">
+                  <div className="col-12">
+                    <p className="fw-bold">Baggage Details</p>
+                  </div>
+                  <div className="table-responsive">
+                    <table className="table table-bordered text-center">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>
+                            <div className="fw-bold">Adult</div>
+                            <div className="text-secondary">Age 12+ yrs</div>
+                          </th>
+                          <th>
+                            <div className="fw-bold">Children</div>
+                            <div className="text-secondary">Age 2-12 yrs</div>
+                          </th>
+                          <th>
+                            <div className="fw-bold">Infant</div>
+                            <div className="text-secondary">Age 2 yrs</div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th className="fw-bold">Check-In</th>
+                          <td>15 KG</td>
+                          <td>15 KG</td>
+                          <td>0 KG</td>
+                        </tr>
+                        <tr>
+                          <th className="fw-bold">Cabin</th>
+                          <td>7 KG</td>
+                          <td>7 KG</td>
+                          <td>7 KG</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {/* <div className="col-12 col-lg-6">
+                  <div className="col-12">
+                    <p className="fw-bold">Stop Details</p>
+                  </div>
+                  <div className="table-responsive">
+                    <table className="table table-bordered text-center">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>
+                            <div className="fw-bold">Adult</div>
+                            <div className="text-secondary">Age 12+ yrs</div>
+                          </th>
+                          <th>
+                            <div className="fw-bold">Children</div>
+                            <div className="text-secondary">Age 2-12 yrs</div>
+                          </th>
+                          <th>
+                            <div className="fw-bold">Infant</div>
+                            <div className="text-secondary">Age 2 yrs</div>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th className="fw-bold">Check-In</th>
+                          <td>15 KG</td>
+                          <td>15 KG</td>
+                          <td>0 KG</td>
+                        </tr>
+                        <tr>
+                          <th className="fw-bold">Cabin</th>
+                          <td>7 KG</td>
+                          <td>7 KG</td>
+                          <td>7 KG</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

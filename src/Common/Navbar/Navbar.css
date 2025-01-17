@@ -30,9 +30,9 @@
   text-decoration: none;
   color: #362a60;
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 @media screen and (max-width: 768px) {
