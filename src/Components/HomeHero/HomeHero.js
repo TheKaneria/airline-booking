@@ -4,6 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import images from "../../Constants/images";
 
 const HomeHero = () => {
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="containerr container">
       <div className="vector-image d-none d-xxl-block">
@@ -25,23 +32,29 @@ const HomeHero = () => {
             stroke-dasharray="22 22"
           ></path>
         </svg>
-        <div className="location-image">
+        {/* <div className="location-image">
           <img src={images.location} alt="" />
-        </div>
+        </div> */}
       </div>
-      <div className="row align-items-center">
-        <div className="col-12 col-md-5 leftside">
+      <div className="row gap-4 gap-lg-0 align-items-center justify-content-center">
+        <div className="col-12 col-lg-5 leftside">
           <div className="content-block">
             <h1 className="heroleftsidetext">
-              <span> Book</span> Your Dream <span>Flights</span> Now!
+              <span>Book</span> Your Dream <span>Flights</span> Now!
             </h1>
-            <p className="mt-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              reiciendis aspernatur aliquam iusto, odit dolore necessitatibus.
-              Beatae totam tempore magnam.
+            <p className="mt-3 col-lg-10">
+              Book your dream flights now and turn your travel aspirations into
+              reality! Whether you're planning a relaxing getaway, an
+              adventurous trip, or a visit to loved ones, we have the perfect
+              options tailored just for you.
             </p>
 
-            <button className="herobookbtn">BOOK NOW</button>
+            <button
+              className="herobookbtn"
+              onClick={() => handleScroll("#bookingcont")}
+            >
+              BOOK NOW
+            </button>
           </div>
         </div>
         <div className="col-12 col-md-7 imgsec">

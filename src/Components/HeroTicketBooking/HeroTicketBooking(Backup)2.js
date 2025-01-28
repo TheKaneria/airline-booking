@@ -16,6 +16,31 @@ import { BsFillLuggageFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
+const option = [
+  { value: "ocean", label: "Ocean", color: "#00B8D9" },
+  { value: "blue", label: "Blue", color: "#0052CC" },
+  { value: "purple", label: "Purple", color: "#5243AA" },
+  { value: "red", label: "Red", color: "#FF5630" },
+  { value: "orange", label: "Orange", color: "#FF8B00" },
+  { value: "yellow", label: "Yellow", color: "#FFC400" },
+  { value: "green", label: "Green", color: "#36B37E" },
+  { value: "forest", label: "Forest", color: "#00875A" },
+  { value: "slate", label: "Slate", color: "#253858" },
+  { value: "silver", label: "Silver", color: "#666666" },
+];
+const option2 = [
+  { value: "ocean", label: "Ocean", color: "#00B8D9" },
+  { value: "blue", label: "Blue", color: "#0052CC" },
+  { value: "purple", label: "Purple", color: "#5243AA" },
+  { value: "red", label: "Red", color: "#FF5630" },
+  { value: "orange", label: "Orange", color: "#FF8B00" },
+  { value: "yellow", label: "Yellow", color: "#FFC400" },
+  { value: "green", label: "Green", color: "#36B37E" },
+  { value: "forest", label: "Forest", color: "#00875A" },
+  { value: "slate", label: "Slate", color: "#253858" },
+  { value: "silver", label: "Silver", color: "#666666" },
+];
+
 const HeroTicketBooking = () => {
   const [selected, setSelected] = useState(0);
   const [selectedClass, setSelectedClass] = useState("Economy");
@@ -43,10 +68,6 @@ const HeroTicketBooking = () => {
   const [getArrCityCode, setArrCityCode] = useState("");
   const [getSearchFlightListMsg, setSearchFlightListMsg] = useState("");
   const [getSeachCondition, setSearchCondition] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false);
-  const [availableMonths, setAvailableMonths] = useState([]);
-  const [defaultMonth, setDefaultMonth] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const [travellers, setTravellers] = useState({
     adult: 1,
@@ -70,9 +91,7 @@ const HeroTicketBooking = () => {
     setIsDropdownOpen2(!isDropdownOpen2);
   };
 
-  const toggleView = () => {
-    setIsViewOpen(!isViewOpen);
-  };
+  // console.log("getSearchFlightList",getSearchFlightList);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -202,10 +221,7 @@ const HeroTicketBooking = () => {
     ArrivalCityList(item.city_code);
     SectorList(item.city_code);
     setDepCityCode(item.city_code);
-    setIsDropdownOpen(false);
-    setDefaultMonth("");
-    setSelectedDate(null);
-    setSelectedValue2("");
+    setIsDropdownOpen(false); // Close the dropdown
   };
   const handleSelect2 = (item) => {
     setSelectedValue2(`${item.city_name} (${item.airport_code})`);
@@ -213,12 +229,12 @@ const HeroTicketBooking = () => {
     ArrivalCityList(getDepCityCode);
     setArrCityCode(item.city_code);
     getOnwardDate(item.city_code);
+
     setIsDropdownOpen2(false);
   };
 
   const onChange = (date, dateString) => {
     setDate1(dateString);
-    setSelectedDate(date);
     if (selected == 1) {
       getReturnDate(dateString);
     }
@@ -308,7 +324,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -351,8 +367,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -394,8 +409,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -438,8 +452,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -450,20 +463,13 @@ const HeroTicketBooking = () => {
       if (data.replyCode === "success") {
         console.log("Response Dates from API ZEEL:", data);
         setOnwardDateList(data.data);
-
-        const months = [
-          ...new Set(
-            data.data.map((item) => moment(item.onward_date).format("YYYY-MM"))
-          ),
-        ];
-        const defaultmonth = moment(data.data[0].onward_date, "YYYY-MM-DD");
-        setDefaultMonth(defaultmonth);
-        setAvailableMonths(months);
+        Notification("success", "Success!", data.message);
       } else {
-        console.log("error", "Error!", data.message || "Something went wrong");
+        Notification("error", "Error!", data.message || "Something went wrong");
       }
     } catch (error) {
       console.error("Error while fetching departure city list:", error);
+      Notification("error", "Error!", "Failed to fetch data");
     }
   };
 
@@ -492,8 +498,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -553,8 +558,7 @@ const HeroTicketBooking = () => {
         const response = await fetch(url, {
           method: "POST",
           headers: {
-            // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-            "Content-Type": "application/json", // Add any other headers required
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
         });
@@ -619,8 +623,7 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          // "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-          "Content-Type": "application/json", // Add any other headers required
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -961,12 +964,8 @@ const HeroTicketBooking = () => {
                       onChange={onChange}
                       placeholder="Select Date"
                       format="DD-MM-YYYY"
+                      value={date1 ? dayjs(date1, "DD-MM-YYYY") : null}
                       disabledDate={disableAllExceptApiDates}
-                      value={
-                        selectedDate || defaultMonth
-                          ? dayjs(selectedDate || defaultMonth)
-                          : null
-                      }
                     />
                   </div>
                 </div>
@@ -1136,8 +1135,140 @@ const HeroTicketBooking = () => {
                   return (
                     <>
                       <div className="flightsavailable shadow">
-                        <div className="row align-items-center">
-                          <div className="col-12 col-lg-8">
+                        <div className="align-items-center justify-content-around d-flex flex-column gap-5 gap-lg-0 flex-lg-row p-3">
+                          <div className="airlinename col-12 col-lg-3">
+                            <div>
+                              {item.airline_name === "IndiGo Airlines" ? (
+                                <>
+                                  <img
+                                    src={images.IndiGoAirlines_logo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "Neos" ? (
+                                <>
+                                  <img
+                                    src={images.neoslogo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "SpiceJet" ? (
+                                <>
+                                  <img
+                                    src={images.spicejetlogo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "Air India" ? (
+                                <>
+                                  <img
+                                    src={images.airindialogo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "Akasa Air" ? (
+                                <>
+                                  <img
+                                    src={images.akasalogo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "Etihad" ? (
+                                <>
+                                  <img
+                                    src={images.etihadlogo}
+                                    style={
+                                      item.airline_name === "Etihad"
+                                        ? {
+                                            backgroundColor: "#fffbdb",
+                                            padding: "5px",
+                                            borderRadius: "5px",
+                                          }
+                                        : ""
+                                    }
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : item.airline_name === "Vistara" ? (
+                                <>
+                                  <img
+                                    src={images.vistaralogo}
+                                    className="airline_logo"
+                                  />
+                                </>
+                              ) : (
+                                <>
+                                  <IoAirplaneSharp size={40} color="white" />
+                                </>
+                              )}
+                            </div>
+                            <div className="planecomp">
+                              {item?.airline_name}
+                            </div>
+                            <div className="flightnum">
+                              {item?.flight_number}
+                            </div>
+                          </div>
+                          <div className="flight-details col-12 col-lg-6 justify-content-center">
+                            <div className="flight-departure">
+                              <h5 className="flighttime">{item?.dep_time}</h5>
+                              <h5 className="airportname">
+                                {item?.dep_city_name}
+                              </h5>
+                            </div>
+                            <div className="d-flex align-items-center gap-2 gap-lg-3">
+                              <span className="text-white">To</span>
+                              <div className="from-to text-center">
+                                <h6 className="text-white">
+                                  {item?.duration &&
+                                    `${item.duration.split(":")[0]}h ${
+                                      item.duration.split(":")[1]
+                                    }min`}
+                                </h6>
+                                <img
+                                  src={images.vimaan}
+                                  alt=""
+                                  className="imagerouteplane"
+                                />
+                                <h6 className="text-white">
+                                  {item?.no_of_stop} Stop
+                                </h6>
+                              </div>
+                              <span className="text-white">From</span>
+                            </div>
+                            <div className="flight-departure">
+                              <h5 className="flighttime">{item?.arr_time}</h5>
+                              <h5 className="airportname">
+                                {item?.arr_city_name}
+                              </h5>
+                            </div>
+                          </div>
+
+                          {/* <div className="nanolito"></div> */}
+                          <div className="pricediv col-lg-3">
+                            <div className="d-flex align-items-center">
+                              <FaRupeeSign size={20} color="#fff" />
+                              <h4 className="text-white fw-bold dijit">
+                                {item?.total_payable_price}
+                              </h4>
+                            </div>
+                            <div className="text-white">
+                              Total Fare for {totalTravellers}
+                            </div>
+                            <Link
+                              to={"/TicketBookingDetails"}
+                              state={{
+                                item: item,
+                                totaltraveller: totalTravellers,
+                              }}
+                              className="bookBtn"
+                            >
+                              Book
+                            </Link>
+                          </div>
+                        </div>
+                        {item?.return_flight_data ? (
+                          <>
                             <div className="align-items-center justify-content-around d-flex flex-column gap-5 gap-lg-0 flex-lg-row p-3">
                               <div className="airlinename col-12 col-lg-3">
                                 <div>
@@ -1212,60 +1343,59 @@ const HeroTicketBooking = () => {
                                   {item?.airline_name}
                                 </div>
                                 <div className="flightnum">
-                                  {item?.flight_number}
+                                  {
+                                    item?.return_flight_data
+                                      ?.return_flight_number
+                                  }
                                 </div>
                               </div>
                               <div className="flight-details col-12 col-lg-6 justify-content-center">
-                                <div className="flight-departure text-center">
+                                <div className="flight-departure">
                                   <h5 className="flighttime">
-                                    {item?.dep_time}
+                                    {item?.return_flight_data?.return_dep_time}
                                   </h5>
                                   <h5 className="airportname">
-                                    {item?.dep_city_name}
+                                    {
+                                      item?.return_flight_data
+                                        ?.return_dep_city_name
+                                    }
                                   </h5>
-                                  <p className="alldate text-white">
-                                    {moment(item?.onward_date).format(
-                                      "DD-MM-YYYY"
-                                    )}
-                                  </p>
                                 </div>
                                 <div className="d-flex align-items-center gap-2 gap-lg-3">
                                   <span className="text-white">To</span>
                                   <div className="from-to text-center">
-                                    <h6 className="text-white">
-                                      {item?.duration &&
-                                        `${item.duration.split(":")[0]}h ${
-                                          item.duration.split(":")[1]
-                                        }min`}
-                                    </h6>
+                                    {/* <h6 className="text-white">
+                                  {item?.return_flight_data?.return_trip_duration &&
+                                    `${item?.return_flight_data?.return_trip_duration.split(":")[0]}h ${
+                                      item?.return_flight_data?.return_trip_duration.split(":")[1]
+                                    }min`}
+                                </h6> */}
                                     <img
                                       src={images.vimaan}
                                       alt=""
                                       className="imagerouteplane"
                                     />
                                     <h6 className="text-white">
-                                      {item?.no_of_stop} Stop
+                                      {item?.return_no_of_stop} Stop
                                     </h6>
                                   </div>
                                   <span className="text-white">From</span>
                                 </div>
-                                <div className="flight-departure text-center">
+                                <div className="flight-departure">
                                   <h5 className="flighttime">
-                                    {item?.arr_time}
+                                    {item?.return_flight_data?.return_arr_time}
                                   </h5>
                                   <h5 className="airportname">
-                                    {item?.arr_city_name}
+                                    {
+                                      item?.return_flight_data
+                                        ?.return_arr_city_name
+                                    }
                                   </h5>
-                                  <p className="alldate">
-                                    {moment(item?.arr_date).format(
-                                      "DD-MM-YYYY"
-                                    )}
-                                  </p>
                                 </div>
                               </div>
 
                               {/* <div className="nanolito"></div> */}
-                              {/* <div className="pricediv col-lg-3">
+                              <div className="pricediv col-lg-3">
                                 <div className="d-flex align-items-center">
                                   <FaRupeeSign size={20} color="#fff" />
                                   <h4 className="text-white fw-bold dijit">
@@ -1285,190 +1415,17 @@ const HeroTicketBooking = () => {
                                 >
                                   Book
                                 </Link>
-                              </div> */}
-                            </div>
-                            {item?.return_flight_data ? (
-                              <>
-                                <div className="align-items-center justify-content-around d-flex flex-column gap-5 gap-lg-0 flex-lg-row p-3">
-                                  <div className="airlinename col-12 col-lg-3">
-                                    <div>
-                                      {item.airline_name ===
-                                      "IndiGo Airlines" ? (
-                                        <>
-                                          <img
-                                            src={images.IndiGoAirlines_logo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "Neos" ? (
-                                        <>
-                                          <img
-                                            src={images.neoslogo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "SpiceJet" ? (
-                                        <>
-                                          <img
-                                            src={images.spicejetlogo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "Air India" ? (
-                                        <>
-                                          <img
-                                            src={images.airindialogo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "Akasa Air" ? (
-                                        <>
-                                          <img
-                                            src={images.akasalogo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "Etihad" ? (
-                                        <>
-                                          <img
-                                            src={images.etihadlogo}
-                                            style={
-                                              item.airline_name === "Etihad"
-                                                ? {
-                                                    backgroundColor: "#fffbdb",
-                                                    padding: "5px",
-                                                    borderRadius: "5px",
-                                                  }
-                                                : ""
-                                            }
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : item.airline_name === "Vistara" ? (
-                                        <>
-                                          <img
-                                            src={images.vistaralogo}
-                                            className="airline_logo"
-                                          />
-                                        </>
-                                      ) : (
-                                        <>
-                                          <IoAirplaneSharp
-                                            size={40}
-                                            color="white"
-                                          />
-                                        </>
-                                      )}
-                                    </div>
-                                    <div className="planecomp">
-                                      {item?.airline_name}
-                                    </div>
-                                    <div className="flightnum">
-                                      {
-                                        item?.return_flight_data
-                                          ?.return_flight_number
-                                      }
-                                    </div>
-                                  </div>
-                                  <div className="flight-details col-12 col-lg-6 justify-content-center">
-                                    <div className="flight-departure text-center">
-                                      <h5 className="flighttime">
-                                        {
-                                          item?.return_flight_data
-                                            ?.return_dep_time
-                                        }
-                                      </h5>
-                                      <h5 className="airportname">
-                                        {
-                                          item?.return_flight_data
-                                            ?.return_dep_city_name
-                                        }
-                                      </h5>
-                                      <p className="alldate">
-                                        {moment(
-                                          item?.return_flight_data
-                                            ?.return_dep_date
-                                        ).format("DD-MM-YYYY")}
-                                      </p>
-                                    </div>
-                                    <div className="d-flex align-items-center gap-2 gap-lg-3">
-                                      <span className="text-white">To</span>
-                                      <div className="from-to text-center">
-                                        <h6 className="text-white">
-                                          {`${item?.return_flight_data?.return_trip_duration}h`}
-                                        </h6>
-                                        <img
-                                          src={images.vimaan}
-                                          alt=""
-                                          className="imagerouteplane"
-                                        />
-                                        <h6 className="text-white">
-                                          {item?.return_no_of_stop} Stop
-                                        </h6>
-                                      </div>
-                                      <span className="text-white">From</span>
-                                    </div>
-                                    <div className="flight-departure text-center">
-                                      <h5 className="flighttime">
-                                        {
-                                          item?.return_flight_data
-                                            ?.return_arr_time
-                                        }
-                                      </h5>
-                                      <h5 className="airportname">
-                                        {
-                                          item?.return_flight_data
-                                            ?.return_arr_city_name
-                                        }
-                                      </h5>
-                                      <p className="alldate">
-                                        {moment(
-                                          item?.return_flight_data
-                                            ?.return_arr_date
-                                        ).format("DD-MM-YYYY")}
-                                      </p>
-                                    </div>
-                                  </div>
-
-                                  {/* <div className="nanolito"></div> */}
-                                </div>
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
-                          <div className="col-12 col-lg-3">
-                            <div className="pricediv col-lg-3 mb-3 mb-lg-0">
-                              <div className="d-flex align-items-center">
-                                <FaRupeeSign size={20} color="#fff" />
-                                <h4 className="text-white fw-bold dijit">
-                                  {item?.total_payable_price}
-                                </h4>
                               </div>
-                              <div className="text-white">
-                                Total Fare for {totalTravellers}
-                              </div>
-                              <Link
-                                to={"/TicketBookingDetails"}
-                                state={{
-                                  item: item,
-                                  totaltraveller: totalTravellers,
-                                }}
-                                className="bookBtn"
-                              >
-                                Book
-                              </Link>
                             </div>
-                          </div>
-                        </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                       <div className="flightcounter">
                         <div className="row align-items-center justify-content-center">
                           <div className="row p-0 align-items-center justify-content-center col-revv">
-                            <div
-                              className="col-md-4 d-flex align-items-start justify-content-lg-end gap-2 weightdiv"
-                              onClick={toggleView}
-                            >
+                            <div className="col-md-4 d-flex align-items-start justify-content-lg-end gap-2 weightdiv">
                               <div>
                                 <BsFillLuggageFill size={20} color="" />
                               </div>
@@ -1500,133 +1457,6 @@ const HeroTicketBooking = () => {
                                   {" "}
                                   {item?.available_seats}{" "}
                                 </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div
-                            className={`transition-view ${
-                              isViewOpen ? "show" : "hide"
-                            }`}
-                          >
-                            <div className="row align-items-center">
-                              <div className="col-12 col-lg-6">
-                                <div className="col-12">
-                                  <p className="fw-bold">Baggage Details</p>
-                                </div>
-                                <div className="table-responsive">
-                                  <table className="table table-bordered text-center">
-                                    <thead>
-                                      <tr>
-                                        <th></th>
-                                        <th>
-                                          <div className="fw-bold">Adult</div>
-                                          <div className="text-secondary">
-                                            Age 12+ yrs
-                                          </div>
-                                        </th>
-                                        <th>
-                                          <div className="fw-bold">
-                                            Children
-                                          </div>
-                                          <div className="text-secondary">
-                                            Age 2-12 yrs
-                                          </div>
-                                        </th>
-                                        <th>
-                                          <div className="fw-bold">Infant</div>
-                                          <div className="text-secondary">
-                                            Age 2 yrs
-                                          </div>
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th className="fw-bold">Check-In</th>
-                                        <td>{`${item?.check_in_baggage_adult} KG`}</td>
-                                        <td>{`${item?.check_in_baggage_children} KG`}</td>
-                                        <td>{`${item?.check_in_baggage_infant} KG`}</td>
-                                      </tr>
-                                      <tr>
-                                        <th className="fw-bold">Cabin</th>
-                                        <td>{`${item?.cabin_baggage_adult} KG`}</td>
-                                        <td>{`${item?.cabin_baggage_children} KG`}</td>
-                                        <td>{`${item?.cabin_baggage_infant} KG`}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div className="col-12 col-lg-6">
-                                <div className="col-12">
-                                  <p className="fw-bold">Stop Details</p>
-                                </div>
-                                <div className="table-responsive">
-                                  <table className="table table-bordered text-center">
-                                    <thead>
-                                      <tr>
-                                        <th></th>
-                                        <th>
-                                          <div className="fw-bold">City</div>
-                                        </th>
-                                        <th>
-                                          <div className="fw-bold">Arrival</div>
-                                        </th>
-                                        <th>
-                                          <div className="fw-bold">
-                                            Layover Duration
-                                          </div>
-                                        </th>
-                                        <th>
-                                          <div className="fw-bold">
-                                            Departure
-                                          </div>
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <th className="fw-bold">Going</th>
-                                        {item?.stop_data.length > 0 ? (
-                                          <>
-                                            <td>
-                                              {item?.stop_data[0]?.city_name}
-                                            </td>
-                                            <td>
-                                              {item?.stop_data[0]?.arrival_time}
-                                            </td>
-                                            <td>
-                                              {item?.stop_data[0]
-                                                ?.stop_duration &&
-                                                (() => {
-                                                  const [hours, minutes] =
-                                                    item.stop_data[0].stop_duration.split(
-                                                      ":"
-                                                    );
-                                                  return `${hours} h ${minutes} min`;
-                                                })()}
-                                            </td>
-
-                                            <td>
-                                              {`${item?.stop_data[0]?.departure_time}`}
-                                            </td>
-                                          </>
-                                        ) : (
-                                          <>
-                                            <td> Non-Stop </td>
-                                          </>
-                                        )}
-                                      </tr>
-                                      {/* <tr>
-                                        <th className="fw-bold">Cabin</th>
-                                        <td>7 KG</td>
-                                        <td>7 KG</td>
-                                        <td>7 KG</td>
-                                      </tr> */}
-                                    </tbody>
-                                  </table>
-                                </div>
                               </div>
                             </div>
                           </div>

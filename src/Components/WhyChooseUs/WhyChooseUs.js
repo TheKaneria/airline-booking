@@ -63,9 +63,9 @@ const WhyChooseUs = () => {
               </div>
               <div className="hdingdiv">Best Price Guarantee</div>
               <div className="txtdiv">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt laborum repellendus dolorum possimus officia est soluta
-                quis, id perferendis odit.
+                Enjoy the confidence of booking with our Best Price Guarantee,
+                ensuring you get the lowest fares every time. If you find a
+                better price elsewhere, we’ll match it!
               </div>
             </div>
           </div>
@@ -108,9 +108,9 @@ const WhyChooseUs = () => {
               </div>
               <div className="hdingdiv">Easy & Quick Booking</div>
               <div className="txtdiv">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt laborum repellendus dolorum possimus officia est soluta
-                quis, id perferendis odit.
+                Experience hassle-free travel planning with our easy and quick
+                booking process. Get your tickets in just a few clicks and focus
+                on enjoying your journey!
               </div>
             </div>
           </div>
@@ -152,9 +152,9 @@ const WhyChooseUs = () => {
               </div>
               <div className="hdingdiv">Customer Care 24/7</div>
               <div className="txtdiv">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt laborum repellendus dolorum possimus officia est soluta
-                quis, id perferendis odit.
+                Our 24/7 Customer Care ensures you're never alone on your
+                journey. From booking to arrival, we're here to assist with all
+                your needs, day or night.
               </div>
             </div>
           </div>

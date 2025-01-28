@@ -9,7 +9,7 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="airlineticket">
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />

@@ -407,6 +407,7 @@ input {
   margin: 0.5rem auto;
   background-color: var(--color-theme);
   border-radius: 20px;
+  /* display: flex; */
 }
 .flightcounter {
   width: 90%;
@@ -447,6 +448,7 @@ input {
   flex-direction: row;
   gap: 1rem;
   align-items: center;
+  width: 65%;
 }
 .imagerouteplane {
   object-fit: contain;
@@ -462,7 +464,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: auto; */
+  width: auto;
 }
 .bookBtn {
   background-color: var(--color-background);
@@ -539,7 +541,22 @@ input {
   text-align: center;
 }
 
+.airline_logo {
+  height: 40px;
+  width: 40px;
+}
+
+.alldate {
+  font-size: 14px;
+  color: white;
+}
+
 @media screen and (max-width: 768px) {
+  .transition-view.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+
   .classcat {
     display: flex;
     align-items: center;
@@ -560,17 +577,21 @@ input {
     margin: 0.5rem auto;
     background-color: var(--color-theme);
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
   }
   .flight-details {
     flex-direction: row;
+    gap: 10px;
   }
   .imagerouteplane {
     width: 125px;
   }
   .flighttime,
   .airportname {
-    font-size: 16px;
+    font-size: 14px;
   }
+
   .col-revv {
     flex-direction: column-reverse;
   }

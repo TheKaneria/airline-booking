@@ -494,7 +494,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -537,7 +538,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -579,7 +581,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -622,7 +625,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -666,7 +670,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -715,7 +720,8 @@ const HeroTicketBooking = () => {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+          "Content-Type": "application/json", // Add any other headers required
         },
         body: JSON.stringify(payload),
       });
@@ -1150,7 +1156,7 @@ const HeroTicketBooking = () => {
 
         <div className="flightcounter">
           <div className="row align-items-center justify-content-center">
-            <div className="row p-0  align-items-center justify-content-center col-revv">
+            <div className="row p-0 align-items-center justify-content-center col-revv">
               <div
                 className="col-md-4 d-flex align-items-start justify-content-lg-end gap-2 weightdiv"
                 onClick={toggleView}

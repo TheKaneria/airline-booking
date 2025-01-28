@@ -528,21 +528,19 @@ p {
 }
 
 .spinner {
-  border: 16px solid var(--color-bg); /* Light grey */
-  border-top: 16px solid var(--color-theme); /* Orange */
+  border: 16px solid var(--color-bg);
+  border-top: 16px solid var(--color-theme);
   border-radius: 50%;
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
-  margin-bottom: 10px; /* Add space below the spinner */
+  margin-bottom: 10px;
 }
 
 .loading-text {
-  margin: 0; /* Remove default margin */
-  font-size: 16px; /* Adjust text size */
-  color: var(
-    --color-theme
-  ); /* Match the spinner color or set your preference */
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-theme);
   position: absolute;
   top: 3rem;
   font-weight: 600;

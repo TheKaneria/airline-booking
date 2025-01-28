@@ -19,6 +19,13 @@ import bags from "../Assets/luaggage.png";
 import aboutbg from "../Assets/title-banner-2.png";
 import plane from "../Assets/route-plane.png";
 import vimaan from "../Assets/vimaanimage.png";
+import IndiGoAirlines_logo from "../Assets/IndiGoAirlines_logo.png";
+import airindialogo from "../Assets/airindiaicon.png";
+import etihadlogo from "../Assets/Etihad-Airways-Logo.png";
+import vistaralogo from "../Assets/Vistara-Logo.png";
+import akasalogo from "../Assets/Akasa_Air_logo.png";
+import spicejetlogo from "../Assets/spicejet-logo.png";
+import neoslogo from "../Assets/Neos_(airline)-Logo.png";
 
 export default {
   logo,
@@ -42,4 +49,11 @@ export default {
   aboutbg,
   plane,
   vimaan,
+  IndiGoAirlines_logo,
+  airindialogo,
+  etihadlogo,
+  vistaralogo,
+  akasalogo,
+  spicejetlogo,
+  neoslogo,
 };

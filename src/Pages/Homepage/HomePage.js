@@ -4,6 +4,7 @@ import HomeHero from "../../Components/HomeHero/HomeHero";
 import HeroTicketBooking from "../../Components/HeroTicketBooking/HeroTicketBooking";
 import WhyChooseUs from "../../Components/WhyChooseUs/WhyChooseUs";
 import PartnerAirline from "../../Components/PartnerAirlines/PartnerAirline";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   useEffect(() => {
@@ -12,6 +13,10 @@ const HomePage = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Home | Airline Booking</title>
+      </Helmet>
+
       <HomeHero />
       <HeroTicketBooking />
       <WhyChooseUs />

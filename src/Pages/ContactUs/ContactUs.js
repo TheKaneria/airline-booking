@@ -5,6 +5,7 @@ import PathHero from "../../Components/PathHeroComponent/PathHero";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { FaPhone } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
+import { Helmet } from "react-helmet";
 
 const ContactUs = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,10 @@ const ContactUs = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contact | Airline Booking</title>
+      </Helmet>
+
       <PathHero name={"Contact Us"} />
       <section className="container shadow formcont p-4">
         <div className="row align-items-center justify-content-center z-3">

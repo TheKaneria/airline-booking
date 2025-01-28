@@ -45,7 +45,7 @@
   right: 140px;
   width: 68%;
   z-index: 10;
-  transform: rotate(172deg);
+  transform: rotate(165deg);
 }
 .planeimg,
 .content-block {
@@ -63,6 +63,7 @@
   object-fit: contain;
   height: 100%;
   width: 100%;
+
   /* background-color: red; */
 }
 
@@ -124,13 +125,14 @@
 
 @media screen and (max-width: 1599px) {
   .vector-image svg {
-    /* right: 25px; */
-    width: 68%;
+    /* right: 100px; */
+    width: 70%;
   }
   .location-image {
-    top: 35%;
+    top: 25%;
     right: 8%;
     position: absolute;
+    /* z-index: 10; */
   }
 }
 

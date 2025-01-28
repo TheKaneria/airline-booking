@@ -44,7 +44,9 @@ const Footer = () => {
       <div className="container-fluid container-md whitefooter">
         <div className="row align-items-center mt-5 gap-4 gap-md-0">
           <div className="col-md-4 d-flex justify-content-md-center align-self-start ">
-            <img src={images.logo} className="footerlogo" />
+            <Link to={"/"}>
+              <img src={images.logo} className="footerlogo" />
+            </Link>
           </div>
           <div className="col-sm-4 flex-column justify-content-center">
             <div className="linkstitle ">Useful Links</div>

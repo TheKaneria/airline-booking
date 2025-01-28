@@ -1,0 +1,79 @@
+.details-contt {
+  background-color: var(--color-background);
+}
+
+.bg-cont {
+  background-color: var(--color-theme);
+  padding: 2rem 1rem;
+  border-radius: 14px;
+  max-width: 1440px;
+  margin: 0 auto !important;
+}
+
+.genderSelect {
+  background-color: transparent;
+}
+.inpttticket {
+  background-color: var(--color-background);
+  text-align: start;
+}
+
+.pricee-tag {
+  background-color: var(--color-background);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  height: 50px;
+}
+
+.pricee-tag h2 {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--color-theme);
+}
+
+.flight-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2.5rem;
+}
+
+.lito {
+  background-color: white;
+  width: 1px;
+  height: 100px;
+  padding: 0px;
+}
+
+.bottomlito {
+  background-color: white;
+  width: 100%;
+  margin: 1rem auto;
+  height: 1px;
+  align-self: center;
+}
+
+.sbmitbtn {
+  cursor: pointer;
+  background-color: var(--color-background);
+  padding: 10px;
+  font-weight: 800;
+  color: var(--color-theme);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  /* align-self: center;
+  display: flex;
+  align-items: center; */
+}
+
+@media screen and (max-width: 768px) {
+  .flight-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0px;
+  }
+}

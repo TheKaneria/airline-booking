@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import images from "../../Constants/images";
 import HappyClients from "../../Components/HappyClients/HappyClients";
 import PathHero from "../../Components/PathHeroComponent/PathHero";
+import { Helmet } from "react-helmet";
 
 const AboutUs = () => {
   useEffect(() => {
@@ -12,6 +13,9 @@ const AboutUs = () => {
 
   return (
     <>
+      <Helmet>
+        <title>About | Airline Booking</title>
+      </Helmet>
       <PathHero name={"About Us"} />
 
       <section className="container videosection">
